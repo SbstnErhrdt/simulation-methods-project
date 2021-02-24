@@ -18,6 +18,6 @@ Adapted from [Maciej Workiewicz](https://github.com/Mac13kW/NK_model)
 
 ## Notebook
 
-Got to the [Notebook](./NK.ipynb)
+Go to the [Notebook](./NK.ipynb)
 
 
