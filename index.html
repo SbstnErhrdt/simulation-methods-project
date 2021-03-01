@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <style>
+        body {
+            font-family: "Arial";
+        }
+
+        textarea, select, input, button {
+            outline: none;
+        }
+
+        #navigation input {
+            cursor: pointer;
+            width: 250px;
+            text-align: center;
+            margin: 5px;
+            display: inline-block;
+            background: #fff;
+            border: 1px solid #ccc;
+            line-height: 20px;
+        }
+
+        #chart {
+        }
+    </style>
+</head>
+<body>
+<h1>NK-Grahps</h1>
+<p>This is an interactive chart to explore the results for our different input variables</p>
+<div id="chart">
+    <canvas id="myChart"></canvas>
+</div>
+<div id="navigation"></div>
+
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    let store = {};
+
+    let active = {};
+
+    let chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+        // The data for our dataset
+        data: {
+            labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49'],
+            datasets: [],
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+
+    function addData(dataset) {
+        chart.data.datasets.push(dataset)
+        chart.update();
+    }
+
+    function removeData(key) {
+        let index = 0
+        chart.data.datasets.forEach((dataset) => {
+            console.log(dataset);
+            if (dataset.label === key) {
+                chart.data.datasets.splice(index, 1);
+                chart.update();
+                return
+            }
+            index++
+        });
+    }
+
+    function buildNavigation() {
+        for (const [key, value] of Object.entries(store)) {
+            //Create an input type dynamically.
+            let element = document.createElement('input');
+            //Assign different attributes to the element.
+            element.type = 'button';
+            element.value = key; // Really? You want the default value to be the type string?
+            element.name = key; // And the name too?
+            element.onclick = function () { // Note this is a function
+                if (active[key]) {
+                    console.log('found', active[key]);
+                    removeData(key);
+                    delete active[key];
+                    element.style.backgroundColor = '#fff';
+                } else {
+                    console.log('new');
+                    active[key] = true;
+                    addData(value);
+                    element.style.backgroundColor = value.borderColor;
+                }
+                console.log(active);
+            };
+            let nav = document.getElementById('navigation');
+            //Append the element in page (in span).
+            nav.appendChild(element);
+        }
+    }
+
+    window.onload = function () {
+        const url = 'http://localhost:63342/SimMeth-Project/chartjs.json';
+        console.log(url);
+        // send a http request to the static file
+        const req = new XMLHttpRequest();
+        req.overrideMimeType('application/json');
+        req.open('GET', url, true);
+        req.onload = function () {
+            store = JSON.parse(req.responseText);
+            buildNavigation();
+        };
+        req.send(null);
+    };
+
+
+</script>
+
+<p>
+    <strong>Authors:</strong>
+<ul>
+    <li>Pauline Engel</li>
+    <li>Sebastian Erhardt</li>
+    <li>Saskia Hasreiter</li>
+    <li>Leo Schwarze</li>
+    <li>Felix Siegel</li>
+</ul>
+</p>
+
+</body>
+</html>
