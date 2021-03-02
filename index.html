@@ -33,6 +33,28 @@
 <div id="chart">
     <canvas id="myChart"></canvas>
 </div>
+
+<div id="controls">
+    <div>
+        N: <input onchange="updateControls(this)" type="range" name="N" id="sliderN" min="4" step="2" max="6" value="4">
+        <span id="resultN"></span>
+    </div>
+    <div>
+        K: <input onchange="updateControls(this)" type="range" name="K" id="sliderK" min="0" step="2" max="4" value="0">
+        <span id="resultK"></span>
+    </div>
+    <div>
+        C: <input onchange="updateControls(this)" type="range" name="C" id="sliderC" min="0" step="0.25" max="1" value="0.25">
+        <span id="resultC"></span>
+    </div>
+    <div>
+        p_jump:<input onchange="updateControls(this)" type="range" name="p_jump" id="sliderp_jump" min="0" step="0.25" value="0.25"
+                      max="1">
+        <span id="resultp_jump"></span>
+    </div>
+    <button onclick="addNewWithControls()">Add</button>
+</div>
+
 <div id="navigation"></div>
 
 <script>
@@ -122,8 +144,53 @@
         req.send(null);
     };
 
+    let newEntry = {
+        N: 4,
+        K: 0,
+        C: 0.25,
+        p_jump: 0.25
+    }
+
+    function addNewWithControls() {
+        console.log('controls')
+        let key = `N = ${newEntry['N']}, K = ${newEntry['K']}, C = ${newEntry['C']}, p_jump = ${newEntry['p_jump']}`
+        console.log(key)
+        if (store[key]) {
+            if (active[key]) {
+                console.log('already active')
+            } else {
+                active[key] = true;
+                addData(store[key]);
+            }
+        } else {
+            console.log('not found in store')
+        }
+    }
+
+    function updateTextInput() {
+        document.getElementById('resultN').innerText = newEntry['N'];
+        document.getElementById('resultK').innerText = newEntry['K'];
+        document.getElementById('resultC').innerText = newEntry['C'];
+        document.getElementById('resultp_jump').innerText = newEntry['p_jump'];
+    }
+
+    function initInput() {
+        document.getElementById('resultN').value = newEntry['N'];
+        document.getElementById('resultK').value = newEntry['K'];
+        document.getElementById('resultC').value = newEntry['C'];
+        document.getElementById('resultp_jump').value = newEntry['p_jump'];
+    }
+    initInput();
+
+    function updateControls(e) {
+        newEntry[e.name] = e.value;
+        updateTextInput();
+    }
+
+    updateTextInput();
 
 </script>
+
 
 <p>
     <strong>Authors:</strong>
