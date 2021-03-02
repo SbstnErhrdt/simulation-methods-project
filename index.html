@@ -53,6 +53,9 @@
         <span id="resultp_jump"></span>
     </div>
     <button onclick="addNewWithControls()">Add</button>
+
+    <hr>
+    <button onclick="reset()">Reset</button>
 </div>
 
 <div id="navigation"></div>
@@ -174,20 +177,19 @@
         document.getElementById('resultp_jump').innerText = newEntry['p_jump'];
     }
 
-    function initInput() {
-        document.getElementById('resultN').value = newEntry['N'];
-        document.getElementById('resultK').value = newEntry['K'];
-        document.getElementById('resultC').value = newEntry['C'];
-        document.getElementById('resultp_jump').value = newEntry['p_jump'];
-    }
-    initInput();
-
     function updateControls(e) {
         newEntry[e.name] = e.value;
         updateTextInput();
     }
 
     updateTextInput();
+
+    function reset() {
+        console.log("rest")
+        chart.data.datasets = [];
+        active = {};
+        chart.update();
+    }
 
 </script>
 
