@@ -43,7 +43,7 @@
     </style>
 </head>
 <body>
-<h1>NK-Grahps</h1>
+<h1>Software Environment Choice under Platform Effects by using an NK Modelling Approach</h1>
 <p>This is an interactive chart to explore the results for our different input variables</p>
 
 <div id="controls">
@@ -56,11 +56,13 @@
         <span id="resultK"></span>
     </div>
     <div>
-        C: <input onchange="updateControls(this)" type="range" name="C" id="sliderC" min="0" step="0.25" max="1" value="0.25">
+        C: <input onchange="updateControls(this)" type="range" name="C" id="sliderC" min="0" step="0.25" max="1"
+                  value="0.25">
         <span id="resultC"></span>
     </div>
     <div>
-        p_jump:<input onchange="updateControls(this)" type="range" name="p_jump" id="sliderp_jump" min="0" step="0.25" value="0.25"
+        p_jump:<input onchange="updateControls(this)" type="range" name="p_jump" id="sliderp_jump" min="0" step="0.1"
+                      value="0.25"
                       max="1">
         <span id="resultp_jump"></span>
     </div>
@@ -73,7 +75,6 @@
 <div id="chart">
     <canvas id="myChart"></canvas>
 </div>
-
 
 
 <div id="navigation"></div>
@@ -208,7 +209,7 @@
     updateTextInput();
 
     function reset() {
-        console.log("rest")
+        console.log('rest')
         chart.data.datasets = [];
         active = {};
         chart.update();
@@ -217,16 +218,22 @@
 </script>
 
 
-<p>
+<div>
+    <h3>Ludwig-Maximilians-Universität München (LMU)</h3>
     <strong>Authors:</strong>
-<ul>
-    <li>Pauline Engel</li>
-    <li>Sebastian Erhardt</li>
-    <li>Saskia Hasreiter</li>
-    <li>Leo Schwarze</li>
-    <li>Felix Siegel</li>
-</ul>
-</p>
+    <ul>
+        <li>Pauline Engel</li>
+        <li>Sebastian Erhardt</li>
+        <li>Saskia Hasreiter</li>
+        <li>Leo Schwarze</li>
+        <li>Felix Siegel</li>
+    </ul>
+
+    <strong>Advisor:</strong>
+    <ul>
+        <li>Dr. Helge Klapper</li>
+    </ul>
+</div>
 
 </body>
 </html>
