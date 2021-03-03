@@ -1,6 +1,7 @@
-# Simulation Methods Project
+# Software Environment Choice under Platform Effects by using an NK Modelling Approach 
+Written Assignment for the Course **Simulation Methods** in the Study Program **Master of Business Research** (MBR)
 
-This is the repository that contains the code for the group project for the Simulations Methods Project.
+This is the repository that contains the source code and results.
 
 ## Status
 
