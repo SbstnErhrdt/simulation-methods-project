@@ -5,22 +5,24 @@ at Ludwig-Maximilians-Universität München (LMU)
 
 This is the repository that contains the source code and results.
 
-## Status
-
-Work in Progress
-
-## Authors
-
+**Authors:**
 * Pauline Engel
 * Sebastian Erhardt
 * Saskia Hasreiter
 * Leo Schwarze
 * Felix Siegel
 
-Adapted from [Maciej Workiewicz](https://github.com/Mac13kW/NK_model)
+
+**Advisor:**
+* Dr. Helge Klapper
 
 ## Notebook
 
 Go to the [Notebook](./NK.ipynb)
+
+## Interactive Visualization Tool
+
+Go to the [Tool](https://sbstnerhrdt.github.io/simulation-methods-project/)
+
 
 
